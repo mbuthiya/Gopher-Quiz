@@ -15,3 +15,15 @@ func TestQuestionConstructor(t *testing.T){
 		t.Errorf("TestQuestionConstructor got: '%v' but expected : '%v'",got,expected)
 	}
 }
+
+// TestValidateAnswer is a function that test the ValidateAnswer method and returns a boolean
+func TestValidateAnswer(t *testing.T){
+	questionExample := Questions{"How Old are you","Ten"}
+	got := questionExample.ValidateAnswer("Ten")
+	expected :=true
+
+	if got != expected{
+		t.Errorf("TestValidateAnswer expected: '%v' but got '%v'",expected,got)
+	}
+	
+}

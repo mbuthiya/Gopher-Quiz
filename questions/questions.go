@@ -1,7 +1,7 @@
 package questions
 
 type Questions struct{
-	question string
+	Question string
 	answer string
 }
 
@@ -10,6 +10,14 @@ type Questions struct{
 func NewQuestion(question string, answer string) *Questions{
 
 	return &Questions{question,answer}
+}
+
+//ValidateAnswer method that allows us to validate if the answer given is correct for the question.
+func(q *Questions) ValidateAnswer(answer string) bool{
+	if answer == q.answer{
+		return true
+	}
+	return false
 }
 
 
