@@ -8,6 +8,7 @@ import(
 	"bufio"
 	"encoding/csv"
 	"github.com/mbuthiya/goProjects/quizApp/questions"
+	
 )
 
 //ValidateFlag allows us to validate if the user has inputed a flag Item
@@ -59,7 +60,7 @@ func openCSV(csvfile string) [][]string{
 func main(){
 
 	//var count int
-	
+	var count int
 	// Creating flags
 	var csvString string
 	flag.StringVar(&csvString,"csv","","Add the csv link you want to connect")
@@ -69,12 +70,27 @@ func main(){
 	if ValidateFlag(csvString){	
 		readQuestions := openCSV(csvString)
 		// Remove the header text
-		readQuestions = readQuestions[1:] 
+		readQuestionsUpdate := readQuestions[1:] 
 
-		for _,quizQuestion := range getQuestionsList(readQuestions){
+		questionsList:= getQuestionsList(readQuestionsUpdate)[1:]
 
+		for _,quizQuestion := range questionsList{
 			fmt.Println(quizQuestion.Question)
+			
+			// Collecting user Input
+			scanner := bufio.NewScanner(os.Stdin)
+   			scanner.Scan()
+   			userInput := scanner.Text()
+
+			fmt.Println()
+			
+			if string(userInput) == "Sand" {
+				fmt.Println("called")
+				count++
+			}
 		}
+
+		fmt.Printf("Your score is :%d \n",count)
 	}
 
 
